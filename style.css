@@ -1,0 +1,18 @@
+body {
+    
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    background-color: black;
+    
+    
+   
+}
+
+canvas {
+    border: 5px solid white;
+    display: block;
+    margin-top: 150px; 
+    
+}
