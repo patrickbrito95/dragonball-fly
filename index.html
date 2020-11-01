@@ -7,10 +7,27 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
     <body>
-        <div>
+        
+        <!-- LOGO PRINCIPAL -->
+
+        <div class="game-intro">
+            <img src="./images/dbz-logo.png" width="320" height="120" alt="" class="start-game" />
+        </div>
+            <br />
+            
+            <!-- CANVAS -->
+
             <canvas id="canvas" width="730" height="400">
-            Seu navegador não suporta essa aplicação.
-        </canvas></div>
+                Seu navegador não suporta essa aplicação.
+            </canvas>
+        
+            <!-- BOTÃO START E INSTRUÇÕES -->
+
+            <div class="instructions">
+            <button id="start-button">Start Game</button>
+            <p>PRESS SPACE-BAR BUTTON TO FLY.</p>
+            <img src="./images/space-bar.png" alt="" class="space-bar" />
+        </div>    
         <script src="index.js"></script>
     </body>
 </html>

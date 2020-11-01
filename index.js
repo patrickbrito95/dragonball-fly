@@ -26,7 +26,7 @@ weGottaPower = './sound/we-gotta-power.mp3';
 
 function drawGoku(){
     
-    ctx.drawImage(goku, 50, 100);    
+    ctx.drawImage(goku, 50, 100, 75, 78);    
     requestAnimationFrame(drawGoku);
 }
 
