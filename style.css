@@ -7,22 +7,19 @@ body {
     background-color:#33cccc;
     flex-direction: column;
     position: relative;
+
        
 }
 
-.game-intro {
-    background-size: 50%;
-    
-}
 
 #start-button {
     font-size: 15px;
     background-color: blue;
     color: black;
     border: 3px;
-    border-radius: 10px;
-    margin-top: 20px;
-    padding: 20px 60px;
+    border-radius: 100px;
+    margin-top: 10px;
+    padding: 20px 20px;
     color: white;
     box-shadow: -2px 18px 14px 0px rgba(0, 0, 0, 0.59);
    
@@ -39,6 +36,10 @@ body {
     /* box-shadow: -2px 21px 30px 0px rgba(255, 255, 255, 0.46); */
 }
 
+div {
+    margin-top: 20px;
+}
+
 
 .space-bar {
     width: 200px;
@@ -52,8 +53,14 @@ p {
     margin-top: 50px;
 }
 
-canvas {
+#canvas-intro {
     border: 5px solid white;
-    display: block; 
+    display: block;
+    background-image: url(./images/start-game.gif)
+}
+
+#canvas {
+    border: 5px solid white;
+    display: none; 
     
 }

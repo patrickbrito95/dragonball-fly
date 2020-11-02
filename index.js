@@ -1,6 +1,17 @@
 
+//DOM
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+
+//START GAME
+
+document.getElementById('start-button').onclick = function (){
+document.getElementById('canvas-intro').style.display = "none";
+
+document.getElementById('canvas').style.display = "block";
+
+}
 
 // IMAGES
 
@@ -20,20 +31,16 @@ const explositon = new Audio();
 explositon.src = './sounds/explosion.mp3';
 
 const music = new Audio();
-weGottaPower = './sound/we-gotta-power.mp3';
+music.src = './sounds/we-gotta-power.mp3';
 
-// START GAME 
 
-window.onload = function() {
-  document.getElementById("start-button").onclick = function() {
-    startGame();
-  };
 
-  function startGame() {
+// VARIÁVEIS
 
-  }
 
-};
+
+
+
 
 //PERSONAGEM 
 
@@ -42,36 +49,25 @@ const personagem = {
   goku: goku,
   y: 0,
   x: 0,
-  
-  gravity: -1,
-
+  gravity: -0.001,
 
   move: function() {
-    this.y -= this.gravity;
-    
+    this.y -= this.gravity--;
   },
 
   draw: function() {
-    if(this.gravity < 0){
-      ctx.drawImage(this.goku, 50, this.y + this.goku.height, 70, 78);
-    } else {
-      ctx.drawImage(this.goku, 50, this.y - personagem.height, 70, 78);
-    }
+   ctx.drawImage(this.goku, 50, this.y + this.goku.height, 50, 54);
   },
 
-  flyUp: function(){
-    
-  }
 };
 
 function drawGoku() {
     personagem.move();
     personagem.draw();
-
+    music.play();
     requestAnimationFrame(drawGoku);
-  }
-  
-  window.onload = drawGoku;
+}
+   window.onload = drawGoku;
   
   //  CRIAÇÃO DO BACKGROUND DO JOGO
 
@@ -106,18 +102,30 @@ function updateCanvas() {
   
   img.onload = updateCanvas;
   
+ // OBSTACULOS
  
-// CONTROLES
+ 
+
+
+
+  // CONTROLES
 
 document.addEventListener('keydown', function(e){
-  if(e.key === "Space"){
-  }
-  console.log('click');
-})
-;
+  if(e.key === " "){
+    personagem.gravity = 10;
+    }
+    console.log(e.key);
+  
+});
 
+document.addEventListener('keyup', function(e){
+  if(e.key === " "){
+    personagem.gravity = 0;
+    }
+    console.log(e.key);  
+});
 
-
+//SCORE
 
 
 
