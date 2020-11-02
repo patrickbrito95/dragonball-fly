@@ -22,18 +22,92 @@ explositon.src = './sounds/explosion.mp3';
 const music = new Audio();
 weGottaPower = './sound/we-gotta-power.mp3';
 
-// PERSONAGEM 
+// START GAME 
 
-function drawGoku(){
-    
-    ctx.drawImage(goku, 50, 100, 75, 78);    
-    requestAnimationFrame(drawGoku);
+window.onload = function() {
+  document.getElementById("start-button").onclick = function() {
+    startGame();
+  };
+
+  function startGame() {
+
+  }
+
+};
+
+// CLASS GENÉRICA PARA CRIAR O PERSONAGEM E OS OBSTACULOS DO JOGO
+
+class Component {
+  constructor(x, y, width, height, speed){
+    this.image = new Image();
+    this.image.src = image;
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.speed = 0;
+  }
+
+  left(){
+    return this.x;
+  }
+
+  right(){
+    return this.y + this.width;
+  }
+
+  top(){
+    return this.y;
+  }
+
+  bottom(){
+    return this.y +this.height;
+  }
+
 }
 
-window.onload = drawGoku;
+//PERSONAGEM 
 
 
-//  CRIAÇÃO DO BACKGROUND DO JOGO
+const personagem = {
+  goku: goku,
+  y: 0,
+  x: 10,
+  gravity: -1.5,
+
+  move: function() {
+    this.y -= this.gravity;
+    this.y %= canvas.height;
+  },
+
+  draw: function() {
+    
+    // ctx.drawImage(this.goku, 0, this.y);
+    if(this.gravity < 0){
+      ctx.drawImage(this.goku, 0, this.y + this.goku.height);
+    } else {
+      ctx.drawImage(this.goku, 0, this.y - personagem.height);
+    }
+    
+    
+    // ctx.drawImage(this.goku, 50, 150, 75, 78);
+    // if (this.gravity < 0) {
+    //   ctx.drawImage(this.goku, this.y + canvas.height, 100);
+    // } else {
+    //   ctx.drawImage(this.goku, this.y - this.goku.height, 100);
+    // }
+  },
+};
+
+function drawGoku() {
+    personagem.move();
+    personagem.draw();
+    requestAnimationFrame(drawGoku);
+  }
+  
+  window.onload = drawGoku;
+  
+  //  CRIAÇÃO DO BACKGROUND DO JOGO
 
 const backgroundImage = {
   img: img,
@@ -56,6 +130,7 @@ const backgroundImage = {
 };
 
 
+
 function updateCanvas() {
     backgroundImage.move();
   
@@ -67,6 +142,10 @@ function updateCanvas() {
   
   img.onload = updateCanvas;
   
+ 
+// CONTROLES
+
+
 
 
 
