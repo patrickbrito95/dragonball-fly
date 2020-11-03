@@ -56,7 +56,7 @@ p {
 #canvas-intro {
     border: 5px solid white;
     display: block;
-    background-image: url(./images/start-game.gif)
+    background-image: url(./images/start-game.gif);
 }
 
 #canvas {
