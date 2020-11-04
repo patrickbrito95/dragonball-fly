@@ -8,11 +8,14 @@ const ctx = canvas.getContext('2d');
 
 document.getElementById('start-button').onclick = function (){
 document.getElementById('canvas-intro').style.display = "none";
-
 document.getElementById('canvas').style.display = "block";
 
+startGame();
 
-}
+};
+
+
+    // GAME OVER
 
     // IMAGES
 
@@ -33,6 +36,14 @@ explositon.src = './sounds/explosion.mp3';
 
 const music = new Audio();
 music.src = './sounds/we-gotta-power.mp3';
+
+  // VARIÁVEIS
+
+const myGameArea = {
+  myObstacles: [],
+  frames: 0,
+}
+
 
 
    //  CRIAÇÃO DO BACKGROUND DO JOGO
@@ -77,19 +88,26 @@ const personagem = {
   speedY: 0,
 
   move: function() {
-    this.y -= this.gravity--;  
-    
+      this.y -= this.gravity--;  
   },
 
   draw: function() {
    ctx.drawImage(this.goku, 50, this.y + this.goku.height, 95, 90);
   },
   
-  limits: function(){
-    if(this.y >= canvas.height - goku.height - 90){
+  limitsBottom: function(){
+    if(this.y >= canvas.height - goku.height - 90 || this.goku.height >= 300){
+      this.gravity = 0;
+      return;
+    }
+    
+  },
+
+  limitsTop: function(){
+    if(this.y < 0){
       this.gravity = 0;
     }
-  },
+  }
     
   };
 
@@ -97,24 +115,33 @@ const personagem = {
 function drawGoku() {
     personagem.move();
     personagem.draw();
-    personagem.limits();
+    personagem.limitsBottom();
+    personagem.limitsTop();
     // music.play();
     requestAnimationFrame(drawGoku);
 }
   
-  //OBSTACULOS
+  //COLISÕES
 
-
+  // function createObstacles(){
+  //   x = myGameArea.canvas.width;
+  //   y = myGameArea.canvas.height;
+  //   height = Math.floor(Math.random() * (200 - 20 + 1) + 20);
+  //   gap = Math.floor(Math.random() + (200 - 100 + 1) + 100);
+  //   myGameArea.myObstacles.push(
+  //     new Component( 70, height, "./images/blast.png", x, 0)
+  //   );
   
-    
-    
-    goku.onload = drawGoku;
-    window.onload = updateObstacle;
-    img.onload = updateCanvas;
-    
-  
+  //     myGameArea.myObstacles.push(
+  //       new Component(
+  //         70, y - height - gap, "./images/blast.png", x, height + gap
+  //       )
+  //     );
+  // }
 
-
+  //   if(myGameArea.frames % 120 === 0){
+  //     createObstacles();
+  //   }
 
 
 
@@ -123,7 +150,7 @@ function drawGoku() {
 
 document.addEventListener('keydown', function(e){
   if(e.key === " "){
-    personagem.gravity = 10;
+    personagem.gravity = 5;
     }
     console.log(e.key);
   
@@ -181,27 +208,26 @@ document.addEventListener('keyup', function(e){
     //   }
     // };
 
+    
+
     const obstacles = {
       blast: blast,
       x: 0,
-      y: Math.floor(Math.random() * (400 - 100 + 1) + 1),
-      speed: -7.5,
+      y: -480,
+      speed: -50.5,
       frames: 0,
       obstacle: [],
   
       move: function() {
         this.x += this.speed;
-        this.x %= canvas.width + 400;
+        this.x %= canvas.width + 700;
         
       },
     
       draw: function() {
-        ctx.drawImage(this.blast, this.x + canvas.width, this.y, 50, 50);  
-      }
-    
+        ctx.drawImage(this.blast, this.x + canvas.width, this.y, 750, 750); 
+      },
     };
-
-    
     
     function updateObstacle() {
         obstacles.move();
@@ -236,6 +262,23 @@ document.addEventListener('keyup', function(e){
         requestAnimationFrame(updateScore);
     }  
 
-    // window.onload = updateScore;
+
+   function gameOver(){
+     ctx.fillStyle = "black";
+     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+     ctx.font = "50px Arial";
+     ctx.fillText("GAME OVER!!!", 350, 250);
+   }
+
+   
+
+
+
+    window.onload = updateScore; 
+    goku.onload = drawGoku;
+    blast.onload = updateObstacle;
+    img.onload = updateCanvas;
+    
+  
   
 

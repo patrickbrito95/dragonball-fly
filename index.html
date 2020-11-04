@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragon Ball FLY</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-    <body>
-        
-        <!-- LOGO PRINCIPAL -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <div class="game-intro">
-            <img src="./images/dbz-logo.png" width="320" height="120" alt="" class="start-game" />
-        </div>
-            <br />
-            
-            <!-- CANVAS -->
-            <canvas id="canvas-intro" width="730" height="400">
-                Seu navegador não suporta essa aplicação.
-            </canvas>
-            <canvas id="canvas" width="730" height="400">
-                Seu navegador não suporta essa aplicação.
-            </canvas>
-        
-            <!-- BOTÃO START E INSTRUÇÕES -->   
-        <div>
-            <button id="start-button"> FLY!</button>
-        </div>
-        <script src="index.js"></script>
-    </body>
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+  <body>
+  <div id="title">
+    <img src="./images/start-game.gif" alt="" width="730" height="400">
+    <br>
+    <button id="start-button">FLY!</button>
+
+    <h1>Press SPACEBAR TO FLY!</h1>
+  </div>
+  <div id="game-board">
+  </div>
+
+  <script type="text/javascript" src="script.js"></script>
+
+</script>
+</body>
 </html>
