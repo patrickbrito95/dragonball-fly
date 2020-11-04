@@ -21,6 +21,12 @@ window.onload = function () {
     goku = new Component(78, 70, "./images/goku.png", 100, 110);
     game.myObstacles = [];
   }
+
+
+    // SOUNDS
+
+    const music = new Audio();
+    weGottaPower = './sound/we-gotta-power.mp3';
   
     // GAME
 
@@ -40,6 +46,7 @@ window.onload = function () {
     start: function () {
       this.drawCanvas();
       this.reqAnimation = window.requestAnimationFrame(updateGame);
+    
     },
     
     clear: function () {
@@ -272,3 +279,5 @@ window.onload = function () {
     }
   };
 };
+
+Audio.play();
